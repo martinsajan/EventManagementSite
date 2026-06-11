@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Products - Creative Studio</title>
+    <style>
+
+        .product-card {
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 280px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    vertical-align: top;
+    display: inline-flex;
+    flex-direction: column; 
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: #FF6B35;
+    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.product-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #FF6B35;
+    display: inline-block;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, #ffffff, #FF6B35);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.product-price {
+    color: #FF6B35;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.product-desc {
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.book-now-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;  /* ADD THIS */
+}
+
+.book-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+/* Fix for products wrapper */
+.products-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo span {
+            color: #FF6B35;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #FF6B35;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 30px;
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #FF6B35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .product-card {
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            width: 280px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #FF6B35;
+            background: rgba(255, 107, 53, 0.1);
+        }
+        
+        .product-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #FF6B35;
+            display: inline-block;
+            padding-bottom: 5px;
+            color: white;
+        }
+        
+        .product-price {
+            color: #FF6B35;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .product-desc {
+            color: rgba(240, 240, 240, 0.7);
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        
+        .btn-home {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FF6B35;
+            padding: 12px 28px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 107, 53, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-home:hover {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .products-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .welcome-text {
+            color: #FF6B35;
+            margin-right: 15px;
+        }
+        
+        .logout-btn {
+            color: #FF6B35 !important;
+        }
+        
+        .logout-btn:hover {
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Creative <span>Studio</span></div>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Plan</a>
+        <a href="{% url 'user_products' %}">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        
+        {% if is_logged_in %}
+            <span class="welcome-text">👋 Welcome!</span>
+            <a href="{% url 'user_logout' %}" class="logout-btn">Logout</a>
+        {% else %}
+            <a href="{% url 'user_login' %}">Login</a>
+        {% endif %}
+    </nav>
+</header>
+
+<h1>📦 Our Plans and Packages</h1>
+
+<div class="container">
+    <a href="{% url 'home' %}" class="btn-home">← Back to Home</a>
+</div>
+
+<div class="products-wrapper">
+    {% if products %}
+        {% for product in products %}
+        
+        <div class="product-card">
+        <div class="product-name">{{ product.product_name }}</div>
+        <div class="product-price">${{ product.product_price }}</div>
+        <div class="product-desc">{{ product.product_description|truncatechars:80 }}</div>
+    
+    <!-- ADD BOOK NOW BUTTON -->
+    <a href="{% url 'book_package' product.id %}" class="book-now-btn">Book Now →</a>
+</div>
+        {% endfor %}
+    {% else %}
+        <div class="product-card" style="text-align: center;">
+            <p>✨ No products available yet. Check back soon!</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

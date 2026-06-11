@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Bookings - Creative Studio</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 { text-align: center; color: white; margin-bottom: 20px; }
+        
+        .nav-links { text-align: center; margin-bottom: 30px; }
+        .nav-links a {
+            color: #FF6B35;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+        }
+        
+        .export-btn {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            overflow: auto;
+        }
+        
+        th, td { padding: 12px; text-align: left; color: white; }
+        th { background: rgba(0,0,0,0.5); color: #FF6B35; }
+        td { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        select, button {
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .status-pending { color: #f39c12; }
+        .status-confirmed { color: #2ecc71; }
+        .status-cancelled { color: #e74c3c; }
+        .status-completed { color: #3498db; }
+        
+        button { background: #FF6B35; color: white; }
+    </style>
+</head>
+<body>
+    <h1>📋 Manage All Bookings</h1>
+    
+    <div class="nav-links">
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'admin_panel' %}">Users</a>
+        <a href="{% url 'product_list' %}">Services</a>
+        <a href="{% url 'manage_bookings' %}">Bookings</a>
+    </div>
+    
+    <div style="text-align: center;">
+        <a href="{% url 'export_bookings_csv' %}" class="export-btn">📎 Export to CSV</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Package</th>
+                <th>Event Date</th>
+                <th>Guests</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>#{{ booking.id }}</td>
+                <td>{{ booking.user.user_name }}</td>
+                <td>{{ booking.user.user_email }}</td>
+                <td>{{ booking.package.product_name }}</td>
+                <td>{{ booking.event_date }}</td>
+                <td>{{ booking.guest_count }}</td>
+                <td>${{ booking.package.product_price }}</td>
+                <td class="status-{{ booking.status }}">{{ booking.status|title }}</td>
+                <td>
+                    <form method="POST" action="{% url 'update_booking_status' booking.id %}" style="display: flex; gap: 5px;">
+                        {% csrf_token %}
+                        <select name="status">
+                            <option value="pending" {% if booking.status == 'pending' %}selected{% endif %}>Pending</option>
+                            <option value="confirmed" {% if booking.status == 'confirmed' %}selected{% endif %}>Confirmed</option>
+                            <option value="cancelled" {% if booking.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                            <option value="completed" {% if booking.status == 'completed' %}selected{% endif %}>Completed</option>
+                        </select>
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="9">No bookings yet</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

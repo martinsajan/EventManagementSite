@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Creative Studio</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #FF6B35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .add-btn {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 0 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .stats {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+        
+        .stats p {
+            color: rgba(240, 240, 240, 0.9);
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .stats strong {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 28px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        th {
+            background: rgba(0, 0, 0, 0.5);
+            color: #FF6B35;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #FF6B35;
+        }
+        
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            color: rgba(240, 240, 240, 0.9);
+        }
+        
+        tr:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+        
+        .edit {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+        
+        .edit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        }
+        
+        .delete {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e74c3c;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(231, 76, 60, 0.5);
+        }
+        
+        .delete:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .no-users {
+            text-align: center;
+            color: rgba(240, 240, 240, 0.8);
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .no-users a {
+            color: #FF6B35;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .no-users a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>👑 Admin Panel</h1>
+
+<div class="button-container">
+    <a href="{% url 'admin_dashboard' %}" class="add-btn" style="background: #3498db;">📊 Dashboard</a>
+    <a href="/register/" class="add-btn">+ Add New User</a>
+    <a href="{% url 'product_list' %}" class="add-btn">📦 Manage Products</a>
+</div>
+
+<div class="stats">
+    <p>📊 Total Registered Users: <strong>{{ total_users }}</strong></p>
+</div>
+
+{% if users %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.user_name }}</td>
+            <td>{{ user.user_email }}</td>
+            <td>{{ user.user_phone }}</td>
+            <td>{{ user.user_password }}</td>
+            <td>
+                <a href="/myadmin/edit_user/{{ user.id }}/" class="edit">✏️ Edit</a>
+                <a href="/myadmin/delete_user/{{ user.id }}/" class="delete">🗑️ Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-users">
+    No users found. <a href="/register/">Click here</a> to add your first user!
+</div>
+{% endif %}
+
+
+</body>
+</html>

@@ -3,31 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login - Creative Studio</title>
     <style>
+
+        .messages-container {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: auto;
+    max-width: 90%;
+}
+
+.message {
+    padding: 12px 24px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+}
+
+.message.error {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.message.success {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
         :root {
-            --primary-color: #121212;
-            --primary-hover: #2a2a2a;
-            --bg-color: #1a1a1a;
-            --card-bg: #ffffff;
-            --text-main: #121212;
-            --text-muted: #64748b;
-            --error-color: #dc2626;
-            --border-color: #cbd5e1;
-            --input-focus: #121212;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --primary-color: #FF6B35;
+            --primary-hover: #F7931E;
+            --bg-color: #0f0c29;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: rgba(240, 240, 240, 0.7);
+            --error-color: #FF6B35;
+            --border-color: rgba(255, 107, 53, 0.3);
+            --input-focus: #FF6B35;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
             color: var(--text-main);
             height: 100vh;
             display: flex;
@@ -40,10 +81,17 @@
             width: 100%;
             max-width: 420px;
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             padding: 40px;
-            border-radius: 12px;
+            border-radius: 20px;
             box-shadow: var(--shadow-lg);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 53, 0.6);
         }
 
         header {
@@ -52,9 +100,12 @@
         }
 
         header h1 {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
-            color: var(--text-main);
+            background: linear-gradient(135deg, #ffffff, #FF6B35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 8px;
         }
 
@@ -75,15 +126,17 @@
             padding: 20px 16px 6px;
             font-size: 16px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             outline: none;
-            background: transparent;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            transition: all 0.3s ease;
         }
 
         .input-control:focus {
             border-color: var(--input-focus);
-            border-width: 2px;
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+            background: rgba(255, 107, 53, 0.1);
         }
 
         .floating-label {
@@ -126,12 +179,16 @@
             z-index: 2;
         }
 
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
         /* Error Messages */
         .error-message {
             color: var(--error-color);
             font-size: 12px;
             margin-top: 4px;
-            display: none; /* Hidden by default */
+            display: none;
             animation: fadeIn 0.2s ease;
         }
 
@@ -165,6 +222,7 @@
             width: 18px;
             height: 18px;
             cursor: pointer;
+            accent-color: var(--primary-color);
         }
 
         .forgot-password {
@@ -181,19 +239,21 @@
         .btn-login {
             width: 100%;
             height: 48px;
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 40px;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
+            transition: all 0.3s ease;
             margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .btn-login:hover {
-            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
         }
 
         .btn-login:active {
@@ -210,7 +270,7 @@
         .form-footer a {
             color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .form-footer a:hover {
@@ -222,28 +282,40 @@
             .login-container {
                 padding: 32px 24px;
                 box-shadow: none;
-                background: transparent;
+                background: var(--card-bg);
             }
             body {
-                background-color: var(--card-bg);
-                align-items: flex-start;
-                padding-top: 60px;
+                background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+                align-items: center;
+                padding-top: 20px;
             }
         }
     </style>
 </head>
 <body>
+
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
     <main class="login-container">
         <header>
             <h1>Welcome Back</h1>
             <p>Please enter your details to sign in.</p>
         </header>
 
-        <form id="loginForm" novalidate>
+        <form id="loginForm" method="POST" novalidate>
+            {% csrf_token %}
             <!-- Email Field -->
             <div class="form-group">
                 <div class="password-wrapper">
-                    <input type="email" id="email" class="input-control" placeholder=" " required>
+                    <input type="email" id="email" name="email" class="input-control" placeholder=" " required>
                     <label for="email" class="floating-label">Email Address</label>
                 </div>
                 <div id="emailError" class="error-message">Please enter a valid email address.</div>
@@ -252,10 +324,10 @@
             <!-- Password Field -->
             <div class="form-group">
                 <div class="password-wrapper">
-                    <input type="password" id="password" class="input-control" placeholder=" " required>
+                    <input type="password" id="password" name="password" class="input-control" placeholder=" " required>
                     <label for="password" class="floating-label">Password</label>
                     <button type="button" class="toggle-password" id="togglePassword">
-                        <i class="bi bi-eye"></i>
+                        👁️
                     </button>
                 </div>
                 <div id="passwordError" class="error-message">Password must be at least 6 characters.</div>
@@ -279,4 +351,5 @@
             </div>
         </form>
     </main>
- </html>
+</body>
+</html>

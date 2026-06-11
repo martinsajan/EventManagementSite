@@ -2,98 +2,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <title>Sign Up - Creative Studio</title>
   <style>
     * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #1a1a1a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-.signup-container {
-  background-color: white;
-  width: 400px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    .signup-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      width: 400px;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      transition: all 0.3s ease;
+    }
 
-.signup-form {
-  display: flex;
-  flex-direction: column;
-}
+    .signup-container:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 107, 53, 0.6);
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #121212;
-}
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+    }
 
-.input-group {
-  margin-bottom: 15px;
-}
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, #FF6B35);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-input[type="text"], input[type="email"], input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-}
+    .input-group {
+      margin-bottom: 20px;
+    }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  outline: none;
-  border-color: #2a2a2a;
-}
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(240, 240, 240, 0.8);
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-button.submit-btn {
-  padding: 10px;
-  background-color: #121212;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+    input[type="text"], 
+    input[type="email"], 
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      border-radius: 10px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
 
-button.submit-btn:hover {
-  background-color: #2a2a2a;
-}
+    input[type="text"]:focus, 
+    input[type="email"]:focus, 
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #FF6B35;
+      box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+      background: rgba(255, 107, 53, 0.1);
+    }
 
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-}
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
 
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-}
+    button.submit-btn {
+      padding: 12px;
+      background: linear-gradient(135deg, #FF6B35, #F7931E);
+      border: none;
+      border-radius: 40px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    }
 
-.login-link a {
-  color: #121212;
-  text-decoration: #333;
-}
+    button.submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    }
 
-.login-link a:hover {
-  text-decoration: underline;
-}
+    .error-message {
+      color: #FF6B35;
+      font-size: 12px;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .login-link p {
+      color: rgba(240, 240, 240, 0.7);
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #FF6B35;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <div class="signup-container">
-    <form id="signup-form" class="signup-form">
+    <form id="signup-form" class="signup-form" method="POST">
+      {% csrf_token %}
       <h2>Create an Account</h2>
 
       <div class="input-group">
@@ -102,14 +149,13 @@ button.submit-btn:hover {
         <small id="email-error" class="error-message"></small>
       </div>
 
-
       <div class="input-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required>
         <small id="name-error" class="error-message"></small>
       </div>
 
-       <div class="input-group">
+      <div class="input-group">
         <label for="phone">Phone</label>
         <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
         <small id="phone-error" class="error-message"></small>
@@ -124,7 +170,7 @@ button.submit-btn:hover {
       <button type="submit" class="submit-btn">Sign Up</button>
 
       <div class="login-link">
-        <p><span style="color: #64748b;">Already have an account?</span> <a href="{% url 'user_login' %}">Login here</a></p>
+        <p><span style="color: rgba(240, 240, 240, 0.6);">Already have an account?</span> <a href="{% url 'user_login' %}">Login here</a></p>
       </div>
     </form>
   </div>

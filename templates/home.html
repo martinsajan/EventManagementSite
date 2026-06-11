@@ -5,1283 +5,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Studio - Minimal Design</title>
-    <link rel="stylesheet" href="tooplate-graphite-creative.css">
+    <title>Creative Studio - Event Management</title>
 </head>
 <style>
 
+.messages-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.message {
+    padding: 12px 24px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+}
+
+.message.success {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.message.error {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-color: #1a1a1a;
-	color: #d0d0d0;
-	line-height: 1.6;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #f0f0f0;
+    line-height: 1.6;
 }
 
 /* HEADER */
 header {
-	height: 140px;
-	background-color: #121212;
-	border-bottom: 1px solid #2a2a2a;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 60px;
-	position: sticky;
-	top: 0;
-	z-index: 100;
+    height: 100px;
+    background: rgba(15, 12, 41, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo-area {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	cursor: pointer;
-	text-decoration: none;
-	color: #d0d0d0;
-	transition: all 0.3s ease;
-}
-
-.logo-area:hover {
-	opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .logo-vector {
-	width: 80px;
-	height: 80px;
-	background: linear-gradient(135deg, #444 0%, #333 100%);
-	clip-path: polygon(0 0, 100% 0, 80% 100%, 0 80%);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: bold;
-	color: white;
-	font-size: 24px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
 }
 
 .logo-text h1 {
-	font-size: 28px;
-	font-weight: 700;
-	letter-spacing: -0.5px;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
 }
 
 .logo-text p {
-	font-size: 12px;
-	color: #777;
-	margin-top: 4px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+    font-size: 10px;
+    color: #FF6B35;
+    letter-spacing: 2px;
 }
 
 /* NAVIGATION */
 nav {
-	display: flex;
-	gap: 16px;
-	align-items: center;
+    display: flex;
+    gap: 12px;
 }
 
 nav a {
-	height: 60px;
-	padding: 0 32px;
-	display: flex;
-	align-items: center;
-	background-color: #222;
-	color: #d0d0d0;
-	text-decoration: none;
-	font-size: 15px;
-	font-weight: 600;
-	border-left: 2px solid #555;
-	border-bottom: 2px solid #555;
-	transition: all 0.3s ease;
-	position: relative;
-	overflow: hidden;
-	cursor: pointer;
-	clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
-}
-
-nav a::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	background-color: #444;
-	transition: height 0.3s ease;
-	z-index: -1;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 30px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-	color: white;
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
 }
 
-nav a:hover::before,
-nav a.active::before {
-	height: 20%;
-}
-
-/* MOBILE MENU TOGGLE */
 .menu-toggle {
-	display: none;
-	flex-direction: column;
-	gap: 6px;
-	cursor: pointer;
-	background: none;
-	border: none;
-	padding: 0;
+    display: none;
 }
 
-.menu-toggle span {
-	width: 28px;
-	height: 3px;
-	background-color: #d0d0d0;
-	transition: all 0.3s ease;
-}
-
-/* MAIN SECTIONS */
-main {
-	min-height: calc(100vh - 200px);
-}
-
-/* HERO SECTION */
+/* HERO SECTION - SIMPLIFIED */
 .section-hero {
-	min-height: 480px;
-	display: flex;
-	align-items: center;
-	padding: 60px;
-	background-color: #1a1a1a;
-	position: relative;
-	overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    padding: 60px;
 }
 
 .hero-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	width: 100%;
-	display: flex;
-	gap: 60px;
-	align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
 }
 
 .hero-left {
-	flex: 1;
-	z-index: 2;
+    flex: 1;
 }
 
 .hero-line {
-	width: 100px;
-	height: 3px;
-	background: #555;
-	margin: 0 0 30px 0;
+    width: 60px;
+    height: 3px;
+    background: #FF6B35;
+    margin-bottom: 20px;
 }
 
 .hero-left h2 {
-	font-size: 48px;
-	font-weight: 600;
-	margin-bottom: 24px;
-	letter-spacing: -0.5px;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffffff, #FF6B35);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero-left p {
-	font-size: 18px;
-	color: #999;
-	margin-bottom: 40px;
-	line-height: 1.8;
+    font-size: 16px;
+    color: rgba(240, 240, 240, 0.7);
+    margin-bottom: 30px;
+    line-height: 1.6;
 }
 
 .cta-button {
-	display: inline-block;
-	padding: 18px 50px;
-	background-color: #333;
-	color: white;
-	text-decoration: none;
-	font-weight: 600;
-	font-size: 15px;
-	border: none;
-	border-left: 2px solid #555;
-	border-bottom: 2px solid #555;
-	transition: all 0.3s ease;
-	letter-spacing: 0.5px;
-	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.cta-button::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	background-color: #444;
-	transition: height 0.3s ease;
-	z-index: -1;
+    display: inline-block;
+    padding: 12px 35px;
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    color: white;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 }
 
 .cta-button:hover {
-	color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
 }
 
-.cta-button:hover::before {
-	height: 20%;
-}
-
-/* IMAGE SLIDER - FIXED WITH FADE ANIMATION */
 .slider-container {
-	flex: 1;
-	position: relative;
-	height: 400px;
-	overflow: hidden;
-	border: 1px solid #2a2a2a;
-	background-color: #222;
-	background-image: linear-gradient(135deg, #222 0%, #2a2a2a 100%);
+    flex: 1;
+    height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .slide {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	transition: opacity 1.5s ease-in-out;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #1a1a1a;
-}
-
-.slide.active {
-	opacity: 1;
-	z-index: 5;
+    width: 100%;
+    height: 100%;
 }
 
 .slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Fallback text for slides if images don't load */
-.slide::after {
-	content: attr(data-fallback);
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: #555;
-	font-size: 18px;
-	text-align: center;
-	opacity: 0;
-	transition: opacity 0.3s;
-}
-
-.slide img[alt] {
-	position: relative;
-}
-
-.slide img:not([src]),
-.slide img[src=""] {
-	opacity: 0;
-}
-
-.slide:not(:has(img[src])) ::after {
-	opacity: 1;
-}
-
-.slider-dots {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	gap: 12px;
-	z-index: 10;
-}
-
-.dot {
-	width: 12px;
-	height: 12px;
-	background-color: rgba(255, 255, 255, 0.4);
-	border-radius: 50%;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.dot.active {
-	background-color: white;
-	transform: scale(1.2);
-}
-
-/* SERVICES SECTION - REDESIGNED WITH NUMBERS */
-.section-services {
-	padding: 120px 60px;
-	background-color: #121212;
-	border-top: 1px solid #2a2a2a;
-}
-
-.services-container {
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
+/* SECTION TITLES */
 .section-title {
-	font-size: 52px;
-	font-weight: 800;
-	margin-bottom: 80px;
-	text-align: center;
-	letter-spacing: -0.5px;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #ffffff, #FF6B35);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* SERVICES - SIMPLIFIED (3 cards instead of 6) */
+.section-services {
+    padding: 70px 60px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .services-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .service-card {
-	padding: 40px;
-	background-color: transparent;
-	border-right: 1px solid #2a2a2a;
-	border-bottom: 1px solid #2a2a2a;
-	transition: all 0.3s ease;
-	position: relative;
-	overflow: hidden;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 107, 53, 0.2);
 }
 
-.service-card:nth-child(3n) {
-	border-right: none;
-}
-
-.service-card:nth-last-child(-n+3) {
-	border-bottom: none;
-}
-
-.service-card::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 4px;
-	height: 0;
-	background: linear-gradient(180deg, #555 0%, #333 100%);
-	transition: height 0.3s ease;
-}
-
-.service-card:hover::before {
-	height: 100%;
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: #FF6B35;
+    background: rgba(255, 107, 53, 0.1);
 }
 
 .service-number {
-	font-size: 48px;
-	font-weight: 300;
-	color: #333;
-	margin-bottom: 20px;
-	font-family: 'Courier New', monospace;
-	position: relative;
-	display: inline-block;
-}
-
-.service-card:hover .service-number {
-	color: #555;
-}
-
-.service-number::after {
-	content: '';
-	position: absolute;
-	bottom: -5px;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background: #555;
-	transform: scaleX(0);
-	transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-number::after {
-	transform: scaleX(1);
+    font-size: 36px;
+    font-weight: 700;
+    color: #FF6B35;
+    margin-bottom: 15px;
 }
 
 .service-card h3 {
-	font-size: 24px;
-	margin-bottom: 16px;
-	font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
 }
 
 .service-card p {
-	color: #999;
-	font-size: 15px;
-	line-height: 1.8;
+    font-size: 13px;
+    color: rgba(240, 240, 240, 0.7);
+    line-height: 1.5;
 }
 
-/* PORTFOLIO SECTION */
+/* ACTION PLAN - SIMPLIFIED (horizontal steps) */
 .section-portfolio {
-	padding: 120px 60px;
-	background-color: #1a1a1a;
-	border-top: 1px solid #2a2a2a;
-}
-
-.portfolio-container {
-	max-width: 1200px;
-	margin: 0 auto;
+    padding: 70px 60px;
 }
 
 .portfolio-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .portfolio-item {
-	aspect-ratio: 16/10;
-	background: #222;
-	border: 1px solid #2a2a2a;
-	overflow: hidden;
-	position: relative;
-	cursor: pointer;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.portfolio-item::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(135deg, #000 0%, transparent 100%);
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	z-index: 1;
-}
-
-.portfolio-item:hover::before {
-	opacity: 0.4;
-}
-
-.portfolio-item img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover img {
-	transform: scale(1.05);
-}
-
-.portfolio-label {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 24px;
-	background: linear-gradient(180deg, transparent 0%, rgba(18, 18, 18, 0.98) 100%);
-	transform: translateY(20px);
-	transition: transform 0.3s ease;
-	z-index: 2;
-}
-
-.portfolio-item:hover .portfolio-label {
-	transform: translateY(0);
+.portfolio-item:hover {
+    background: rgba(255, 107, 53, 0.15);
+    transform: translateY(-3px);
 }
 
 .portfolio-label h3 {
-	font-size: 18px;
-	margin-bottom: 6px;
-	font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #FF6B35;
 }
 
 .portfolio-label p {
-	font-size: 13px;
-	color: #777;
+    font-size: 12px;
+    color: rgba(240, 240, 240, 0.6);
 }
 
-/* ABOUT SECTION */
+/* ABOUT - SIMPLIFIED */
 .section-about {
-	padding: 120px 60px;
-	background-color: #121212;
-	border-top: 1px solid #2a2a2a;
+    padding: 70px 60px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .about-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 80px;
-	align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .about-content h3 {
-	font-size: 32px;
-	font-weight: 800;
-	margin-bottom: 30px;
-	letter-spacing: -0.5px;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .about-content p {
-	color: #999;
-	margin-bottom: 24px;
-	line-height: 1.9;
-	font-size: 15px;
-}
-
-.about-content p a {
-	color: #d0d0d0;
-	text-decoration: underline;
-	transition: color 0.3s ease;
-}
-
-.about-content p a:hover {
-	color: white;
+    color: rgba(240, 240, 240, 0.7);
+    margin-bottom: 30px;
+    line-height: 1.7;
 }
 
 .about-blocks {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .about-block {
-	padding: 30px;
-	background-color: #222;
-	border-left: 4px solid #555;
-	border-top: 1px solid #2a2a2a;
-	border-right: 1px solid #2a2a2a;
-	border-bottom: 1px solid #2a2a2a;
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
 }
 
 .about-block h4 {
-	font-size: 16px;
-	margin-bottom: 12px;
-	font-weight: 700;
-	color: #d0d0d0;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #FF6B35;
 }
 
 .about-block p {
-	font-size: 13px;
-	color: #777;
-	margin-bottom: 0;
+    font-size: 13px;
+    margin: 0;
 }
 
-/* CONTACT SECTION - IMPROVED 2 COLUMN DESIGN */
+/* CONTACT - SIMPLIFIED */
 .section-contact {
-	padding: 120px 60px;
-	background-color: #1a1a1a;
-	border-top: 1px solid #2a2a2a;
+    padding: 70px 60px;
 }
 
 .contact-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 60px;
-}
-
-.contact-info {
-	padding-right: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
 }
 
 .contact-info h3 {
-	font-size: 36px;
-	font-weight: 800;
-	margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 15px;
 }
 
 .contact-info p {
-	color: #999;
-	margin-bottom: 40px;
-	font-size: 15px;
-	line-height: 1.8;
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 14px;
+    margin-bottom: 25px;
 }
 
 .contact-details {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-}
-
-.contact-item {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	position: relative;
-	padding-left: 30px;
-}
-
-.contact-item::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 10px;
-	width: 12px;
-	height: 1px;
-	background-color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .contact-item label {
-	font-size: 13px;
-	color: #777;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 600;
+    font-size: 11px;
+    color: #FF6B35;
+    text-transform: uppercase;
 }
 
 .contact-item a,
 .contact-item p {
-	color: #d0d0d0;
-	text-decoration: none;
-	font-size: 16px;
-	transition: color 0.3s ease;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-.contact-item a:hover {
-	color: #fff;
-}
-
-/* CONTACT FORM */
 .contact-form {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .form-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 20px;
-}
-
-.form-group {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-.form-group.full-width {
-	grid-column: span 2;
-}
-
-.form-group label {
-	font-size: 13px;
-	color: #777;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 600;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
 .form-group input,
 .form-group textarea {
-	padding: 14px 16px;
-	background-color: #222;
-	border: 1px solid #333;
-	color: #d0d0d0;
-	font-family: inherit;
-	font-size: 14px;
-	transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-	outline: none;
-	border-color: #555;
-	background-color: #2a2a2a;
-}
-
-.form-group textarea {
-	min-height: 120px;
-	resize: vertical;
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
 }
 
 .submit-btn {
-	padding: 16px 40px;
-	background-color: #333;
-	color: white;
-	border: none;
-	border-left: 2px solid #555;
-	border-bottom: 2px solid #555;
-	font-weight: 600;
-	font-size: 14px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	margin-top: 10px;
-	align-self: flex-start;
-	position: relative;
-	overflow: hidden;
-	clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.submit-btn::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	background-color: #444;
-	transition: height 0.3s ease;
-	z-index: -1;
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-	color: white;
-}
-
-.submit-btn:hover::before {
-	height: 20%;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 }
 
 /* FOOTER */
 footer {
-	background-color: #121212;
-	border-top: 1px solid #2a2a2a;
-	padding: 40px 60px;
-	text-align: center;
-	color: #777;
-	font-size: 13px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(240, 240, 240, 0.5);
 }
 
 footer a {
-	color: #999;
-	text-decoration: none;
-	transition: color 0.3s ease;
-}
-
-footer a:hover {
-	color: #d0d0d0;
+    color: #FF6B35;
+    text-decoration: none;
 }
 
 /* RESPONSIVE */
-@media (max-width: 1024px) {
-	header {
-		padding: 0 40px;
-	}
-
-	nav {
-		gap: 12px;
-	}
-
-	nav a {
-		padding: 0 20px;
-		font-size: 13px;
-	}
-
-	.section-hero {
-		padding: 60px 40px;
-	}
-
-	.hero-container {
-		flex-direction: column;
-	}
-
-	.hero-left {
-		width: 100%;
-		max-width: 600px;
-	}
-
-	.slider-container {
-		height: 350px;
-		width: 100%;
-		max-width: 600px;
-		flex: none;
-	}
-
-	.section-services,
-	.section-portfolio,
-	.section-about,
-	.section-contact {
-		padding: 80px 40px;
-	}
-
-	.hero-left h2 {
-		font-size: 40px;
-	}
-
-	.section-title {
-		font-size: 36px;
-		margin-bottom: 60px;
-	}
-
-	.about-container {
-		grid-template-columns: 1fr;
-		gap: 50px;
-	}
-
-	.contact-container {
-		grid-template-columns: 1fr;
-		gap: 50px;
-	}
-
-	.contact-info {
-		padding-right: 0;
-	}
-
-	.services-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.service-card:nth-child(2n) {
-		border-right: none;
-	}
-
-	.service-card:nth-child(3n) {
-		border-right: 1px solid #2a2a2a;
-	}
-}
-
-/* Tablet landscape specific fixes */
-@media (max-width: 1024px) and (orientation: landscape) {
-	.slider-container {
-		height: 300px;
-	}
-}
-
-/* iPad Pro and larger tablets */
-@media (min-width: 769px) and (max-width: 1024px) {
-	.slider-container {
-		height: 380px;
-		margin: 0 auto;
-	}
-}
-
-/* PORTFOLIO POPUP/MODAL */
-.portfolio-modal {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
-	z-index: 2000;
-	align-items: center;
-	justify-content: center;
-	backdrop-filter: blur(4px);
-}
-
-.portfolio-modal.active {
-	display: flex;
-}
-
-.modal-content {
-	background-color: #1a1a1a;
-	border: 1px solid #2a2a2a;
-	max-width: 900px;
-	width: 90%;
-	max-height: 90vh;
-	overflow-y: auto;
-	position: relative;
-	display: flex;
-	gap: 40px;
-	padding: 40px;
-}
-
-.modal-image {
-	width: 50%;
-	flex-shrink: 0;
-	aspect-ratio: 4 / 3;
-	object-fit: cover;
-	border: 1px solid #2a2a2a;
-	align-self: flex-start;
-}
-
-.modal-content>.modal-details {
-	width: 50%;
-	display: flex;
-	flex-direction: column;
-}
-
-.modal-details h3#modalTitle {
-	font-size: 28px;
-	margin-bottom: 8px;
-	font-weight: 700;
-	color: #d0d0d0;
-}
-
-.modal-details p#modalCategory {
-	color: #999;
-	font-size: 14px;
-	font-weight: 600;
-	letter-spacing: 1px;
-	margin: 0 0 20px 0;
-	text-transform: uppercase;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #2a2a2a;
-}
-
-.modal-details p#modalDescription {
-	color: #999;
-	font-size: 15px;
-	line-height: 1.8;
-	margin-bottom: 20px;
-}
-
-.modal-details ul {
-	list-style: none;
-	margin-bottom: 30px;
-	padding-left: 0;
-}
-
-.modal-details li {
-	color: #999;
-	font-size: 15px;
-	line-height: 1.8;
-	margin-bottom: 12px;
-	padding-left: 24px;
-	position: relative;
-}
-
-.modal-details li::before {
-	content: '•';
-	position: absolute;
-	left: 0;
-	color: #555;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.modal-visit-btn {
-	display: inline-block;
-	padding: 14px 40px;
-	background-color: #333;
-	color: white;
-	text-decoration: none;
-	font-weight: 600;
-	font-size: 14px;
-	border: none;
-	border-left: 2px solid #555;
-	border-bottom: 2px solid #555;
-	transition: all 0.3s ease;
-	letter-spacing: 0.5px;
-	cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	z-index: 10;
-	clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.modal-visit-btn::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	background-color: #444;
-	transition: height 0.3s ease;
-	z-index: -1;
-}
-
-.modal-visit-btn:hover {
-	color: white;
-}
-
-.modal-visit-btn:hover::before {
-	height: 20%;
-}
-
-
-.modal-close {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	width: 40px;
-	height: 40px;
-	background: none;
-	border: none;
-	color: #d0d0d0;
-	font-size: 28px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 20;
-	padding: 0;
-	pointer-events: auto;
-}
-
-.modal-close:hover {
-	color: white;
-	transform: rotate(90deg);
-}
-
-@media (max-width: 768px) {
-	.modal-content {
-		flex-direction: column;
-		gap: 20px;
-		padding: 50px 20px 30px 20px;
-		max-height: 85vh;
-	}
-
-	.modal-content>.modal-image {
-		width: 100%;
-		order: 2;
-	}
-
-	.modal-content>.modal-details {
-		width: 100%;
-		order: 1;
-	}
-
-	.modal-details h3#modalTitle {
-		font-size: 22px;
-		margin-bottom: 8px;
-	}
-
-	.modal-details p#modalCategory {
-		font-size: 13px;
-		margin-bottom: 15px;
-		padding-bottom: 15px;
-	}
-
-	.modal-details p#modalDescription {
-		font-size: 14px;
-		margin-bottom: 15px;
-	}
-
-	.modal-details li {
-		font-size: 14px;
-		margin-bottom: 10px;
-	}
-
-	.modal-visit-btn {
-		padding: 12px 32px;
-		font-size: 13px;
-	}
-}
-
-/* Scrollbar styling for modal */
-.modal-content::-webkit-scrollbar {
-	width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-	background: #121212;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-	background: #333;
-	border-radius: 3px;
-}
-
-.modal-content::-webkit-scrollbar-thumb:hover {
-	background: #444;
-}
-
-@media (max-width: 768px) {
-	header {
-		height: auto;
-		padding: 15px 20px;
-		justify-content: space-between;
-	}
-
-	.logo-vector {
-		width: 40px;
-		height: 40px;
-		font-size: 12px;
-	}
-
-	.logo-text h1 {
-		font-size: 18px;
-	}
-
-	.logo-text p {
-		font-size: 6px;
-	}
-
-	nav {
-		display: none;
-		position: fixed;
-		top: 80px;
-		right: 20px;
-		left: auto;
-		background-color: #121212;
-		flex-direction: column;
-		padding: 20px;
-		gap: 10px;
-		border-bottom: 1px solid #2a2a2a;
-		max-height: calc(100vh - 80px);
-		overflow-y: auto;
-		z-index: 999;
-		width: auto;
-	}
-
-	nav.active {
-		display: flex;
-	}
-
-	/* Scrollbar styling for mobile menu */
-	nav::-webkit-scrollbar {
-		width: 6px;
-	}
-
-	nav::-webkit-scrollbar-track {
-		background: #1a1a1a;
-	}
-
-	nav::-webkit-scrollbar-thumb {
-		background: #333;
-		border-radius: 3px;
-	}
-
-	nav::-webkit-scrollbar-thumb:hover {
-		background: #444;
-	}
-
-	nav a {
-		width: auto;
-		height: 50px;
-		flex-shrink: 0;
-		padding: 0 24px;
-		min-width: 150px;
-	}
-
-	.menu-toggle {
-		display: flex;
-	}
-
-	.menu-toggle.active span:nth-child(1) {
-		transform: rotate(45deg) translateY(9px);
-	}
-
-	.menu-toggle.active span:nth-child(2) {
-		opacity: 0;
-	}
-
-	.menu-toggle.active span:nth-child(3) {
-		transform: rotate(-45deg) translateY(-9px);
-	}
-
-	.section-hero {
-		padding: 40px 20px;
-		min-height: auto;
-	}
-
-	.hero-container {
-		gap: 40px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.hero-left {
-		width: 100%;
-	}
-
-	.hero-left h2 {
-		font-size: 32px;
-	}
-
-	.hero-left p {
-		font-size: 16px;
-		margin-bottom: 30px;
-	}
-
-	.cta-button {
-		padding: 14px 40px;
-		font-size: 14px;
-	}
-
-	.slider-container {
-		height: 300px;
-		min-height: 300px;
-		width: 100%;
-		max-width: none;
-		position: relative;
-		display: block;
-		flex: none;
-	}
-
-	.slide {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.slider-dots {
-		bottom: 10px;
-	}
-
-	.dot {
-		width: 10px;
-		height: 10px;
-	}
-
-	.section-services,
-	.section-portfolio,
-	.section-about,
-	.section-contact {
-		padding: 60px 20px;
-	}
-
-	.section-title {
-		font-size: 28px;
-		margin-bottom: 40px;
-	}
-
-	.services-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.service-card {
-		border-right: none;
-		border-bottom: 1px solid #2a2a2a;
-	}
-
-	.service-card:last-child {
-		border-bottom: none;
-	}
-
-	.portfolio-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.form-row {
-		grid-template-columns: 1fr;
-	}
-
-	.form-group.full-width {
-		grid-column: span 1;
-	}
-
-	footer {
-		padding: 30px 20px;
-		font-size: 11px;
-	}
+@media (max-width: 900px) {
+    header {
+        padding: 0 20px;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-line {
+        margin: 0 auto 20px auto;
+    }
+    
+    .hero-left h2 {
+        font-size: 36px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .portfolio-item {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-hero,
+    .section-services,
+    .section-portfolio,
+    .section-about,
+    .section-contact {
+        padding: 50px 20px;
+    }
 }
 </style>
 <body>
-    <!-- HEADER -->
+
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
     <header>
         <div class="header-container">
-            <a href="#" class="logo-area" onclick="scrollToTop(); return false;">
+            <a href="#" class="logo-area">
                 <div class="logo-vector">CS</div>
                 <div class="logo-text">
                     <h1>Creative Studio</h1>
@@ -1292,19 +547,21 @@ footer a:hover {
                 <a href="#home" class="active">Home</a>
                 <a href="#services">Services</a>
                 <a href="#portfolio">Plan</a>
+                <a href="{% url 'user_products' %}">Products</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
-				<a href="{% url 'user_login' %}">Login</a>
+                
+                {% if is_logged_in %}
+    <span>👋 Welcome, {{ user_name }}</span>
+    <a href="{% url 'my_bookings' %}">My Bookings</a>  <!-- ADD THIS -->
+    <a href="{% url 'user_logout' %}">Logout</a>
+                {% else %}
+    <a href="{% url 'user_login' %}">Login</a>
+                {% endif %}
             </nav>
-            <button class="menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
         <!-- HERO SECTION -->
         <section id="home" class="section-hero">
@@ -1313,267 +570,157 @@ footer a:hover {
                     <div class="hero-line"></div>
                     <h2>We Create Experiences</h2>
                     <p>Streamline your events with powerful tools for scheduling, registration, and analytics.</p>
-                    <a href="#contact" class="cta-button">Book an Event</a>
+                    <a href="#contact" class="cta-button">Book an Event →</a>
                 </div>
                 <div class="slider-container">
-                    <div class="slide active" data-fallback="Design Workspace">
-                        <img src="static\images\7.jpg" alt="Design workspace">
-                    </div>
-                    <div class="slide" data-fallback="Creative Work">
-                        <img src="static\images\2.png" alt="Creative work">
-                    </div>
-                    <div class="slide" data-fallback="Web Design">
-                        <img src="static\images\a.jpeg" alt="Web design">
-                    </div>
-                    <div class="slider-dots">
-                        <div class="dot active" onclick="currentSlide(0)"></div>
-                        <div class="dot" onclick="currentSlide(1)"></div>
-                        <div class="dot" onclick="currentSlide(2)"></div>
+                    <div class="slide">
+                        <img src="{% static 'images/7.jpg' %}" alt="Event">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
+        <!-- SERVICES SECTION - Top 3 -->
         <section id="services" class="section-services">
-            <div class="services-container">
-                <h2 class="section-title">Our Services</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-number">.01</div>
-                        <h3>Event Planning & Coordination</h3>
-                        <p>End-to-end event planning tailored to your vision. From concept development to day-of coordination, we handle every detail so you can enjoy a seamless experience.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">.02</div>
-                        <h3>Venue Selection & Booking</h3>
-                        <p>Access our curated network of premium venues. We help you find the perfect space that matches your budget, style, and guest count, handling all negotiations and bookings.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">.03</div>
-                        <h3>Guest Management</h3>
-                        <p>Simplify attendee management with our digital invitation system. Send invites, track RSVPs, manage dietary preferences, and communicate with guests effortlessly.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">.04</div>
-                        <h3>Vendor Management</h3>
-                        <p>We connect you with trusted caterers, photographers, decorators, and entertainers. Our team handles all vendor coordination, contracts, and timelines.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">.05</div>
-                        <h3>Budget Management</h3>
-                        <p>Stay on top of your finances with our transparent budget tracking tool. We help you allocate resources wisely, track expenses, and avoid hidden costs.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">.06</div>
-                        <h3>On-Site Event Execution</h3>
-                        <p>Our professional event coordinators manage everything on the big day – from setup and registration to troubleshooting and breakdown – ensuring flawless execution.</p>
-                    </div>
+            <h2 class="section-title">Our Core Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3>Event Planning</h3>
+                    <p>End-to-end event planning tailored to your vision. From concept to day-of coordination.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3>Venue Selection</h3>
+                    <p>Access our curated network of premium venues that match your budget and style.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3>Guest Management</h3>
+                    <p>Digital invites, RSVP tracking, and seamless communication with attendees.</p>
                 </div>
             </div>
         </section>
 
-        <!-- PORTFOLIO SECTION -->
+        <!-- ACTION PLAN - Simplified -->
         <section id="portfolio" class="section-portfolio">
-            <div class="portfolio-container">
-                <h2 class="section-title">Action Plan</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="static\images\1.jpg" alt="Project Alpha" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Blueprint</h3>
-                            <p>Strategy & Design</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">A cutting-edge web design and development project that combines modern aesthetics with powerful functionality. This project showcases our expertise in creating responsive, user-centric digital experiences.</p>
-                            <ul class="features">
-                                <li>Fully responsive design</li>
-                                <li>Modern web technologies</li>
-                                <li>Optimized performance</li>
-                                <li>SEO friendly</li>
-                            </ul>
-                            <a href="https://x.com/minthu" class="visit-url">Visit Site</a>
-                        </div>
+            <h2 class="section-title">Our Process</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-label">
+                        <h3>Blueprint</h3>
+                        <p>Strategy & Design</p>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="static\images\2.png" alt="Project Beta" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Build</h3>
-                            <p>Vendor & Logistics</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">Complete brand identity development including logo design, color systems, and brand guidelines. This project demonstrates our ability to create cohesive visual identities that resonate with target audiences.</p>
-                            <ul class="features">
-                                <li>Logo design</li>
-                                <li>Brand guidelines</li>
-                                <li>Color systems</li>
-                                <li>Visual identity</li>
-                            </ul>
-                            <a href="https://www.tooplate.com" rel="nofollow" class="visit-url">Visit Site</a>
-                        </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">
+                        <h3>Build</h3>
+                        <p>Vendor & Logistics</p>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="static\images\3.jpg" alt="Project Gamma" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Launch</h3>
-                            <p>Registration & Promotion</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">An immersive digital experience that leverages cutting-edge web technologies and interactive design principles. This project showcases our expertise in creating memorable user interactions.</p>
-                            <ul class="features">
-                                <li>Interactive elements</li>
-                                <li>Smooth animations</li>
-                                <li>Modern aesthetics</li>
-                                <li>User engagement</li>
-                            </ul>
-                            <a href="https://www.tooplate.com" rel="nofollow" class="visit-url">Visit Site</a>
-                        </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">
+                        <h3>Launch</h3>
+                        <p>Registration & Promotion</p>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="static\images\4.jpg" alt="Project Delta" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Live</h3>
-                            <p>Day-of Execution</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">Comprehensive brand development project covering strategy, design, and implementation. This project demonstrates our ability to handle complex projects from concept to execution.</p>
-                            <ul class="features">
-                                <li>Strategic planning</li>
-                                <li>Visual design</li>
-                                <li>Brand deployment</li>
-                                <li>Market positioning</li>
-                            </ul>
-                            <a href="https://www.tooplate.com" rel="nofollow" class="visit-url">Visit Site</a>
-                        </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">
+                        <h3>Live</h3>
+                        <p>Day-of Execution</p>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="static\images\5.jpg" alt="Project Epsilon" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Legacy</h3>
-                            <p>Feedback & Analytics</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">A sophisticated multi-platform design project spanning web and mobile applications. This project showcases our expertise in creating consistent experiences across different devices and screen sizes.</p>
-                            <ul class="features">
-                                <li>Responsive design</li>
-                                <li>Cross-platform compatibility</li>
-                                <li>Intuitive UI</li>
-                                <li>Mobile optimization</li>
-                            </ul>
-                            <a href="https://www.tooplate.com" rel="nofollow" class="visit-url">Visit Site</a>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="static\images\6.jpg" alt="Project Zeta" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Other</h3>
-                            <p>More Services...</p>
-                        </div>
-                        <div class="portfolio-data" hidden>
-                            <p class="description">Strategic conceptualization and planning project that formed the foundation for successful client outcomes. This project demonstrates our deep understanding of business goals and market dynamics.</p>
-                            <ul class="features">
-                                <li>Market research</li>
-                                <li>Strategic planning</li>
-                                <li>Competitive analysis</li>
-                                <li>Growth roadmap</li>
-                            </ul>
-                            <a href="https://x.com/minthu" class="visit-url">Visit Site</a>
-                        </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-label">
+                        <h3>Legacy</h3>
+                        <p>Feedback & Analytics</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
+        <!-- ABOUT SECTION - Simplified -->
         <section id="about" class="section-about">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title">Why Choose Us</h2>
             <div class="about-container">
                 <div class="about-content">
-                    <h3>Why Choose Us</h3>
-                    <p>We have an expert team of skilled professionals with years of experience, available 24/7 to support you whenever you need us. We offer affordable pricing with no hidden fees, ensuring you get great value for top-quality service. Our fast delivery means we complete every project on time, and we guarantee 100% satisfaction because we don't stop until you're happy with the result</p>                </div>
+                    <h3>Experts You Can Trust</h3>
+                    <p>Our team of skilled professionals is available 24/7 to support you. We offer transparent pricing, fast delivery, and 100% satisfaction guaranteed.</p>
+                </div>
                 <div class="about-blocks">
                     <div class="about-block">
                         <h4>Creative Excellence</h4>
-                        <p>Award-winning designs that stand out and deliver results beyond expectations.</p>
+                        <p>Award-winning designs that deliver results.</p>
                     </div>
                     <div class="about-block">
                         <h4>Technical Expertise</h4>
-                        <p>Modern technology stack ensuring performance, security, and scalability.</p>
+                        <p>Modern tech for performance & security.</p>
                     </div>
                     <div class="about-block">
                         <h4>Client Partnership</h4>
-                        <p>Collaborative approach with transparent communication throughout the event.</p>
+                        <p>Transparent communication throughout.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
+        <!-- CONTACT SECTION - Simplified -->
         <section id="contact" class="section-contact">
+            <h2 class="section-title">Get In Touch</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>Ready to bring your vision to life? Reach out to us and let's discuss how we can help elevate your brand and create something extraordinary together.</p>
+                    <h3>Let's Talk</h3>
+                    <p>Ready to bring your vision to life? Reach out and let's create something extraordinary together.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <label>Email</label>
-                            <a href="https://x.com/minthu"><span class="__cf_email__" data-cfemail="ff979a939390bf9c8d9a9e8b96899a8c8b8a9b9690d19c9092">[email&#160;protected]</span></a>
+                            <a href="mailto:hello@creativestudio.com">hello@creativestudio.com</a>
                         </div>
                         <div class="contact-item">
                             <label>Phone</label>
                             <a href="tel:+1234567890">+1 (234) 567-890</a>
                         </div>
-                        <div class="contact-item">
-                            <label>Location</label>
-                            <p>Creative Hub, Design District<br>New York, NY 10001</p>
-                        </div>
                     </div>
                 </div>
-                <form class="contact-form" onsubmit="handleSubmit(event)">
+                <form class="contact-form" method="POST">
+                    {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
                         </div>
                     </div>
-                    <div class="form-group full-width">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Subject" required>
                     </div>
-                    <div class="form-group full-width">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <button type="submit" class="submit-btn">Send Message →</button>
                 </form>
             </div>
         </section>
-
-        <!-- PORTFOLIO MODAL -->
-        <div id="portfolioModal" class="portfolio-modal">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closePortfolioModal()">&times;</button>
-                <img id="modalImage" src="" alt="" class="modal-image">
-                <div class="modal-details">
-                    <h3 id="modalTitle"></h3>
-                    <p id="modalCategory"></p>
-                    <p id="modalDescription"></p>
-                    <ul id="modalFeatures"></ul>
-                    <a href="#" id="modalVisitBtn" class="modal-visit-btn" target="_blank">Visit the Site</a>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Creative Studio. All rights reserved. | Designed by <a href="https://www.tooplate.com/" target="_blank" rel="nofollow">Tooplate</a></p>
+        <p>&copy; 2026 Creative Studio. All rights reserved.</p>
     </footer>
-
-	<script src="templates\script.js"></script>
 </body>
 </html>
+
+<script>
+    // Auto-hide messages after 3 seconds
+    setTimeout(function() {
+        var messages = document.querySelectorAll('.message');
+        messages.forEach(function(msg) {
+            msg.classList.add('fade-out');
+            setTimeout(function() {
+                if (msg.parentNode) {
+                    msg.remove();
+                }
+            }, 500);
+        });
+    }, 3000);
+</script>

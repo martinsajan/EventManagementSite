@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancel Booking - Creative Studio</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .cancel-container {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        h2 { color: #e74c3c; }
+        button { background: #e74c3c; color: white; padding: 10px 30px; border: none; border-radius: 30px; cursor: pointer; margin: 10px; }
+        a { color: #FF6B35; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <h2>⚠️ Cancel Booking</h2>
+        <p>Are you sure you want to cancel <strong>{{ booking.package.product_name }}</strong> on <strong>{{ booking.event_date }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Yes, Cancel</button>
+            <a href="{% url 'my_bookings' %}">No, Go Back</a>
+        </form>
+    </div>
+</body>
+</html>
